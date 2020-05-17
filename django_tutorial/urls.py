@@ -26,4 +26,9 @@ urlpatterns = [
      url(r'^categories/add$', app.views.categories_add, name='categories_add'),
      path('categories/edit/<int:id>', app.views.categories_edit, name='categories_edit'),
      path('categories/delete/<int:id>', app.views.categories_delete, name='categories_delete'),
+
+     path('customers', app.views.customers_index, name='customers_index'),
+     path('customers/add', app.views.customers_add, name='customers_add'),
+     path('customers/edit/<int:id>', app.views.customers_edit, name='customers_edit'),
+     path('customers/delete/<int:id>', app.views.customers_delete, name='customers_delete'),
 ]
