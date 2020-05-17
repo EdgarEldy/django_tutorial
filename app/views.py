@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from django.http import HttpRequest
 from .forms import CategoriesForm
+from .forms import CustomersForm
 from .models import Category
+from .models import Customer
 from django.template import RequestContext
 from datetime import datetime
 
@@ -71,3 +73,60 @@ def categories_delete(request, id):
     category = Category.objects.get(pk=id)
     category.delete()
     return redirect('/categories')
+
+def customers_index(request):
+    assert isinstance(request,HttpRequest)
+    return render(
+        request,
+        'app/customers/index.html',
+        {
+            'customers': Customer.objects.all()
+        }
+    )
+
+def customers_add(request):
+    assert isinstance(request,HttpRequest)
+    if request.method == "GET":
+        form = CustomersForm()
+        return render(
+            request,
+            'app/customers/add.html',
+            {
+                'form':form
+            }
+        )
+    else:
+        form = CustomersForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/customers')
+
+def customers_edit(request, id):
+    assert isinstance(request,HttpRequest)
+    if request.method == "GET":
+        if id == 0:
+            form = CustomersForm()
+        else:
+            customer = Customer.objects.get(pk=id)
+            form = CustomersForm(instance=customer)
+        return render(
+            request,
+            'app/customers/edit.html',
+            {
+                'form': form
+            }
+        )
+    else:
+        if id == 0:
+            form = CustomersForm(request.POST)
+        else:
+            customer = Customer.objects.get(pk=id)
+            form = CustomersForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+        return redirect('/customers')
+
+def customers_delete(request, id):
+    customer = Customer.objects.get(pk=id)
+    customer.delete()
+    return redirect('/customers')
