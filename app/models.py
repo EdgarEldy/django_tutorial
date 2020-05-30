@@ -14,3 +14,9 @@ class Customer(models.Model):
     email = models.CharField(max_length=45)
     tel = models.CharField(max_length=45)
     address = models.CharField(max_length=45)
+
+# Product model
+class Product(models.Model):
+    category = models.ForeignKey(Category, on_delete = models.CASCADE)
+    product_name = models.CharField(max_length=45)
+    unit_price = models.IntegerField()
