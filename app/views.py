@@ -1,12 +1,13 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from .forms import CategoriesForm
 from .forms import CustomersForm
+from .forms import ProductsForm
 from .models import Category
 from .models import Customer
+from .models import Product
 from django.template import RequestContext
 from datetime import datetime
-
 
 # Create your views here.
 
@@ -18,7 +19,7 @@ def home(request):
     )
 
 def categories_index(request):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/categories/index.html',
@@ -28,7 +29,7 @@ def categories_index(request):
     )
 
 def categories_add(request):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     if request.method == "GET":
         form = CategoriesForm()
         return render(
@@ -45,7 +46,7 @@ def categories_add(request):
         return redirect('/categories')
 
 def categories_edit(request, id):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     if request.method == "GET":
         if id == 0:
             form = CategoriesForm()
@@ -56,7 +57,7 @@ def categories_edit(request, id):
             request,
             'app/categories/edit.html',
             {
-                'form':form
+                'form': form
             }
         )
     else:
@@ -69,13 +70,14 @@ def categories_edit(request, id):
             form.save()
         return redirect('/categories')
 
+
 def categories_delete(request, id):
     category = Category.objects.get(pk=id)
     category.delete()
     return redirect('/categories')
 
 def customers_index(request):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/customers/index.html',
@@ -85,14 +87,14 @@ def customers_index(request):
     )
 
 def customers_add(request):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     if request.method == "GET":
         form = CustomersForm()
         return render(
             request,
             'app/customers/add.html',
             {
-                'form':form
+                'form': form
             }
         )
     else:
@@ -102,7 +104,7 @@ def customers_add(request):
         return redirect('/customers')
 
 def customers_edit(request, id):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     if request.method == "GET":
         if id == 0:
             form = CustomersForm()
@@ -130,3 +132,60 @@ def customers_delete(request, id):
     customer = Customer.objects.get(pk=id)
     customer.delete()
     return redirect('/customers')
+
+def products_index(request):
+    assert isinstance(request,HttpRequest)
+    return render(
+        request,
+        'app/products/index.html',
+        {
+            'products': Product.objects.all()
+        }
+    )
+
+def products_add(request):
+    assert isinstance(request,HttpRequest)
+    if request.method == "GET":
+        form = ProductsForm()
+        return render(
+            request,
+            'app/products/add.html',
+            {
+                'form':form
+            }
+        )
+    else:
+        form = ProductsForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/products')
+
+def products_edit(request, id):
+    assert isinstance(request,HttpRequest)
+    if request.method == "GET":
+        if id == 0:
+            form = ProductsForm()
+        else:
+            product = Product.objects.get(pk=id)
+            form = ProductsForm(instance=product)
+        return render(
+            request,
+            'app/products/edit.html',
+            {
+                'form': form
+            }
+        )
+    else:
+        if id ==0:
+            form = ProductsForm(request.POST)
+        else:
+            product = Product.objects.get(pk=id)
+            form = ProductsForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+        return redirect('/products')
+
+def products_delete(request, id):
+    product = Product.objects.get(pk=id)
+    product.delete()
+    return redirect('/products')
