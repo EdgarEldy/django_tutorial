@@ -36,4 +36,9 @@ urlpatterns = [
      path('products/add', app.views.products_add, name='products_add'),
      path('products/edit/<int:id>', app.views.products_edit, name='products_edit'),
      path('products/delete/<int:id>', app.views.products_delete, name='products_delete'),
+
+     path('orders',app.views.orders_index, name='orders_index'),
+     path('orders/add', app.views.orders_add, name='orders_add'),
+     path('orders/edit/<int:id>', app.views.orders_edit, name='orders_edit'),
+     path('orders/delete/<int:id>', app.views.orders_delete, name='orders_delete'),
 ]
