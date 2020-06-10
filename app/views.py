@@ -3,9 +3,11 @@ from django.http import HttpRequest
 from .forms import CategoriesForm
 from .forms import CustomersForm
 from .forms import ProductsForm
+from .forms import OrdersForm
 from .models import Category
 from .models import Customer
 from .models import Product
+from .models import Order
 from django.template import RequestContext
 from datetime import datetime
 
@@ -189,3 +191,60 @@ def products_delete(request, id):
     product = Product.objects.get(pk=id)
     product.delete()
     return redirect('/products')
+
+def orders_index(request):
+    assert isinstance(request,HttpRequest)
+    return render(
+        request,
+        'app/orders/index.html',
+        {
+            'orders': Order.objects.all()
+        }
+    )
+
+def orders_add(request):
+    assert isinstance(request,HttpRequest)
+    if request.method == "GET":
+        form = OrdersForm()
+        return render(
+            request,
+            'app/orders/add.html',
+            {
+                'form':form
+            }
+        )
+    else:
+        form = OrdersForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/orders')
+
+def orders_edit(request, id):
+    assert isinstance(request,HttpRequest)
+    if request.method == "GET":
+        if id == 0:
+            form = OrdersForm()
+        else:
+            order = Order.objects.get(pk=id)
+            form = OrdersForm(instance=order)
+        return render(
+            request,
+            'app/orders/edit.html',
+            {
+                'form': form
+            }
+        )
+    else:
+        if id ==0:
+            form = OrdersForm(request.POST)
+        else:
+            order = Order.objects.get(pk=id)
+            form = OrdersForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+        return redirect('/orders')
+
+def orders_delete(request, id):
+    order = Order.objects.get(pk=id)
+    order.delete()
+    return redirect('/orders')
