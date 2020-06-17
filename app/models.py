@@ -19,7 +19,7 @@ class Customer(models.Model):
     address = models.CharField(max_length=45)
 
     def __str__(self):
-        return self.first_name + '' + self.last_name
+        return self.first_name + ' ' + self.last_name
 
 # Product model
 class Product(models.Model):
