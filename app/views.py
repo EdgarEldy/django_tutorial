@@ -1,15 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from .forms import CategoriesForm
-from .forms import CustomersForm
-from .forms import ProductsForm
-from .forms import OrdersForm
-from .models import Category
-from .models import Customer
-from .models import Product
-from .models import Order
+from .forms import CategoriesForm, ProductsForm, CustomersForm, OrdersForm
+from .models import Category, Product, Customer, Order
+from django.contrib.auth.models import User
 from django.template import RequestContext
 from datetime import datetime
+
 
 # Create your views here.
 
@@ -20,6 +16,7 @@ def home(request):
         'app/home/index.html'
     )
 
+
 def categories_index(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -29,6 +26,7 @@ def categories_index(request):
             'categories': Category.objects.all()
         }
     )
+
 
 def categories_add(request):
     assert isinstance(request, HttpRequest)
@@ -46,6 +44,7 @@ def categories_add(request):
         if form.is_valid():
             form.save()
         return redirect('/categories')
+
 
 def categories_edit(request, id):
     assert isinstance(request, HttpRequest)
@@ -78,6 +77,7 @@ def categories_delete(request, id):
     category.delete()
     return redirect('/categories')
 
+
 def customers_index(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -87,6 +87,7 @@ def customers_index(request):
             'customers': Customer.objects.all()
         }
     )
+
 
 def customers_add(request):
     assert isinstance(request, HttpRequest)
@@ -104,6 +105,7 @@ def customers_add(request):
         if form.is_valid():
             form.save()
         return redirect('/customers')
+
 
 def customers_edit(request, id):
     assert isinstance(request, HttpRequest)
@@ -130,13 +132,15 @@ def customers_edit(request, id):
             form.save()
         return redirect('/customers')
 
+
 def customers_delete(request, id):
     customer = Customer.objects.get(pk=id)
     customer.delete()
     return redirect('/customers')
 
+
 def products_index(request):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/products/index.html',
@@ -145,15 +149,16 @@ def products_index(request):
         }
     )
 
+
 def products_add(request):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     if request.method == "GET":
         form = ProductsForm()
         return render(
             request,
             'app/products/add.html',
             {
-                'form':form
+                'form': form
             }
         )
     else:
@@ -162,8 +167,9 @@ def products_add(request):
             form.save()
         return redirect('/products')
 
+
 def products_edit(request, id):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     if request.method == "GET":
         if id == 0:
             form = ProductsForm()
@@ -178,7 +184,7 @@ def products_edit(request, id):
             }
         )
     else:
-        if id ==0:
+        if id == 0:
             form = ProductsForm(request.POST)
         else:
             product = Product.objects.get(pk=id)
@@ -187,13 +193,15 @@ def products_edit(request, id):
             form.save()
         return redirect('/products')
 
+
 def products_delete(request, id):
     product = Product.objects.get(pk=id)
     product.delete()
     return redirect('/products')
 
+
 def orders_index(request):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/orders/index.html',
@@ -202,15 +210,16 @@ def orders_index(request):
         }
     )
 
+
 def orders_add(request):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     if request.method == "GET":
         form = OrdersForm()
         return render(
             request,
             'app/orders/add.html',
             {
-                'form':form
+                'form': form
             }
         )
     else:
@@ -219,8 +228,9 @@ def orders_add(request):
             form.save()
         return redirect('/orders')
 
+
 def orders_edit(request, id):
-    assert isinstance(request,HttpRequest)
+    assert isinstance(request, HttpRequest)
     if request.method == "GET":
         if id == 0:
             form = OrdersForm()
@@ -235,7 +245,7 @@ def orders_edit(request, id):
             }
         )
     else:
-        if id ==0:
+        if id == 0:
             form = OrdersForm(request.POST)
         else:
             order = Order.objects.get(pk=id)
@@ -244,7 +254,20 @@ def orders_edit(request, id):
             form.save()
         return redirect('/orders')
 
+
 def orders_delete(request, id):
     order = Order.objects.get(pk=id)
     order.delete()
     return redirect('/orders')
+
+
+def users_index(request):
+    assert isinstance(request, HttpRequest)
+    users = User.objects.all()
+    return render(
+        request,
+        'app/users/index.html',
+        {
+            'users': users
+        }
+    )
