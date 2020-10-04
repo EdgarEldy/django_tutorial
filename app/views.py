@@ -6,12 +6,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from datetime import datetime
 
 
 # Create your views here.
 
+@login_required(login_url='users_login')
 def home(request):
     assert isinstance(request, HttpRequest)
     return render(
