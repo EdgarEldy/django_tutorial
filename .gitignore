@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 # Created by .ignore support plugin (hsz.mobi)
 # idea
 .idea/
 ### Python template
-=======
->>>>>>> 5c4104f570c2ba75824a23043d5793c099c6ddc1
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -54,10 +51,6 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
-<<<<<<< HEAD
-=======
-*.py,cover
->>>>>>> 5c4104f570c2ba75824a23043d5793c099c6ddc1
 .hypothesis/
 .pytest_cache/
 
@@ -69,10 +62,7 @@ coverage.xml
 *.log
 local_settings.py
 db.sqlite3
-<<<<<<< HEAD
-=======
 db.sqlite3-journal
->>>>>>> 5c4104f570c2ba75824a23043d5793c099c6ddc1
 
 # Flask stuff:
 instance/
@@ -104,17 +94,14 @@ ipython_config.py
 #   install all needed dependencies.
 #Pipfile.lock
 
-<<<<<<< HEAD
 # celery beat schedule file
 celerybeat-schedule
-=======
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
 
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
->>>>>>> 5c4104f570c2ba75824a23043d5793c099c6ddc1
 
 # SageMath parsed files
 *.sage.py
@@ -145,7 +132,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-<<<<<<< HEAD
-
-=======
->>>>>>> 5c4104f570c2ba75824a23043d5793c099c6ddc1
