@@ -44,5 +44,6 @@ urlpatterns = [
 
     # users
     path('users', app.views.users_index, name='users_index'),
-    path('users/add', app.views.users_add, name='users_add')
+    path('users/add', app.views.users_add, name='users_add'),
+    path('users/login', app.views.users_login, name='users_login')
 ]
