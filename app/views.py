@@ -308,3 +308,7 @@ def users_login(request):
         request,
         'app/users/login.html'
     )
+
+def users_logout(request):
+    logout(request)
+    return redirect('/users/login')
