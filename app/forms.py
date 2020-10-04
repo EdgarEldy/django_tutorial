@@ -3,10 +3,9 @@ Definition of forms.
 """
 
 from django.forms import ModelForm
-from .models import Category
-from .models import Customer
-from .models import Product
-from .models import Order
+from .models import *
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class CategoriesForm(ModelForm):
     class Meta:
@@ -27,3 +26,8 @@ class OrdersForm(ModelForm):
     class Meta:
         model = Order
         fields = '__all__'
+
+class UserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'username', 'password1', 'password2']
