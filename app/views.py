@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from .forms import CategoriesForm, ProductsForm, CustomersForm, OrdersForm
-from .models import Category, Product, Customer, Order
+from .forms import *
+from .models import *
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from datetime import datetime
@@ -271,3 +272,21 @@ def users_index(request):
             'users': users
         }
     )
+
+def users_add(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        form = UserForm()
+        return render(
+            request,
+            'app/users/add.html',
+            {
+                'form': form
+            }
+        )
+    else:
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/users')
+
