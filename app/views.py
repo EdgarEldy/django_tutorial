@@ -4,6 +4,8 @@ from .forms import *
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from django.template import RequestContext
 from datetime import datetime
 
@@ -290,3 +292,19 @@ def users_add(request):
             form.save()
         return redirect('/users')
 
+def users_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username = username, password = password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        else:
+            messages.info(request, 'Username or password is incorrect ! Please try again !')
+    return render(
+        request,
+        'app/users/login.html'
+    )
