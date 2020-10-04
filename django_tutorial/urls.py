@@ -43,5 +43,6 @@ urlpatterns = [
     path('orders/delete/<int:id>', app.views.orders_delete, name='orders_delete'),
 
     # users
-    path('users', app.views.users_index, name='users_index')
+    path('users', app.views.users_index, name='users_index'),
+    path('users/add', app.views.users_add, name='users_add')
 ]
