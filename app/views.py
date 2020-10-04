@@ -224,7 +224,8 @@ def orders_add(request):
             request,
             'app/orders/add.html',
             {
-                'form': form
+                'form': form,
+                'categories': Category.objects.all()
             }
         )
     else:
