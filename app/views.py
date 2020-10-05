@@ -247,6 +247,17 @@ def getProducts(request):
         }
     )
 
+# Getting unit_price by id_product
+def getUnitPrice(request):
+    id_product = request.GET.get('id_product')
+    product = Product.objects.get(pk=id_product)
+    return render(
+        request,
+        'app/orders/getUnitPrice.html',
+        {
+            'product': product
+        }
+    )
 
 def orders_edit(request, id):
     assert isinstance(request, HttpRequest)
