@@ -235,6 +235,19 @@ def orders_add(request):
         return redirect('/orders')
 
 
+# Getting products by category_id
+def getProducts(request):
+    category_id = request.GET.get('category_id')
+    products = Product.objects.filter(category_id=category_id).order_by('product_name')
+    return render(
+        request,
+        'app/orders/getProducts.html',
+        {
+            'products': products
+        }
+    )
+
+
 def orders_edit(request, id):
     assert isinstance(request, HttpRequest)
     if request.method == "GET":
@@ -278,6 +291,7 @@ def users_index(request):
         }
     )
 
+
 def users_add(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
@@ -295,12 +309,13 @@ def users_add(request):
             form.save()
         return redirect('/users')
 
+
 def users_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        user = authenticate(request, username = username, password = password)
+        user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
@@ -311,6 +326,7 @@ def users_login(request):
         request,
         'app/users/login.html'
     )
+
 
 def users_logout(request):
     logout(request)
