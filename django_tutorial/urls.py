@@ -42,6 +42,7 @@ urlpatterns = [
     path('orders/edit/<int:id>', app.views.orders_edit, name='orders_edit'),
     path('orders/delete/<int:id>', app.views.orders_delete, name='orders_delete'),
     path('orders/getProducts', app.views.getProducts, name='getProducts'),
+    path('orders/getUnitPrice', app.views.getUnitPrice, name='getUnitPrice'),
 
     # users
     path('users', app.views.users_index, name='users_index'),
