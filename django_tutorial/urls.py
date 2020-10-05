@@ -41,6 +41,7 @@ urlpatterns = [
     path('orders/add', app.views.orders_add, name='orders_add'),
     path('orders/edit/<int:id>', app.views.orders_edit, name='orders_edit'),
     path('orders/delete/<int:id>', app.views.orders_delete, name='orders_delete'),
+    path('orders/getProducts', app.views.getProducts, name='getProducts'),
 
     # users
     path('users', app.views.users_index, name='users_index'),
