@@ -9,9 +9,36 @@
                     <form role="form" action="{% url 'orders_add' %}" method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                            {{ form|crispy }}
+                            {{ form.customer|as_crispy_field }}
                             <span class="invalid-feedback"></span>
                         </div>
+                        <div class="form-group">
+                            <label for="category_id"> Category*</label>
+                            <select name="category_id" id="category_id" class="form-control">
+                                <option value=""></option>
+                                {% for category in categories %}
+                                    <option value="{{ category.id }}">{{ category.cat_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="invalid-feedback"></span>
+                        </div>
+                    <div class="form-group">
+                        {{ form.product|as_crispy_field }}
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="unit_price">Unit price*</label>
+                        <input type="text" name="unit_price" value="" class="form-control">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.qty|as_crispy_field }}
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        {{ form.total|as_crispy_field }}
+                        <span class="invalid-feedback"></span>
+                    </div>
                         <button type="submit" id="submit" class="btn btn-primary">Save</button>
                         <button type="reset" class="btn btn-default">Reset</button>
                     </form>
