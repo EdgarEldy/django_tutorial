@@ -13,7 +13,7 @@ $(function () {
     });
 });
 
-//Getting unit pricey by product id
+//Getting unit price by product id
 $(function () {
     $('#id_product').on('change', function () {
         var id_product = $(this).val();
@@ -26,3 +26,13 @@ $(function () {
             });
     });
 });
+
+// Getting total
+$(function () {
+    $('#id_qty').on('change', function () {
+       var price = $('#unit_price').val();
+       var qty = $(this).val();
+       total = price * qty;
+       $('#id_total').val(total);
+    });
+ });
