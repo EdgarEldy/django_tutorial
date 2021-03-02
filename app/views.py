@@ -13,7 +13,7 @@ from datetime import datetime
 
 # Create your views here.
 
-@login_required(login_url='users_login')
+# @login_required(login_url='users_login')
 def home(request):
     assert isinstance(request, HttpRequest)
     return render(
