@@ -12,6 +12,7 @@ class Category(models.Model):
 
 # Customer model
 
+
 class Customer(models.Model):
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
@@ -45,3 +46,6 @@ class Order(models.Model):
 
 class Profile(models.Model):
     profile_name = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.profile_name
