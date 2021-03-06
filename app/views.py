@@ -350,3 +350,20 @@ def profiles_index(request):
         request,
         'app/profiles/index.html'
     )
+
+def profiles_add(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        form = ProfilesForm()
+        return render(
+            request,
+            'app/profiles/add.html',
+            {
+                'form': form
+            }
+        )
+    else:
+        form = ProfilesForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/profiles')
