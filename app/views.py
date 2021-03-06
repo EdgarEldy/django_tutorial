@@ -342,3 +342,11 @@ def users_login(request):
 def users_logout(request):
     logout(request)
     return redirect('/users/login')
+
+# Profile
+def profiles_index(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/profiles/index.html'
+    )
