@@ -348,7 +348,10 @@ def profiles_index(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/profiles/index.html'
+        'app/profiles/index.html',
+        {
+            'profiles': Profile.objects.all()
+        }
     )
 
 def profiles_add(request):
