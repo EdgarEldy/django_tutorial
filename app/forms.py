@@ -35,3 +35,9 @@ class UserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'username', 'password1', 'password2']
+
+
+class ProfilesForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
