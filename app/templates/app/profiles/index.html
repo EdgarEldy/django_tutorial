@@ -22,7 +22,7 @@
                         <td>{{ profile.profile_name }}</td>
                         <td>
                             <div class="card-footer">
-                                <a href="#" class="btn btn-primary">Edit</a>
+                                <a href="{% url 'profiles_edit' profile.id %}" class="btn btn-primary">Edit</a>
                                 <form action="#" method="post">
                                     {% csrf_token %}
                                     <button type="submit"
