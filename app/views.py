@@ -396,3 +396,9 @@ def profiles_edit(request, id):
         if form.is_valid():
             form.save()
         return redirect('/profiles')
+
+
+def profiles_delete(request, id):
+    profile = Profile.objects.get(pk=id)
+    profile.delete()
+    return redirect('/profiles')
