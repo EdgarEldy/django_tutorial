@@ -53,4 +53,7 @@ urlpatterns = [
     # profiles
     path('profiles', app.views.profiles_index, name='profiles_index'),
     path('profiles/add', app.views.profiles_add, name='profiles_add'),
+    path('profiles/edit/<int:id>', app.views.profiles_edit, name='profiles_edit'),
+    path('profiles/delete/<int:id>', app.views.profiles_delete, name='profiles_delete'),
+
 ]
