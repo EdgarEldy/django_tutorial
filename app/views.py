@@ -370,3 +370,29 @@ def profiles_add(request):
         if form.is_valid():
             form.save()
         return redirect('/profiles')
+
+
+def profiles_edit(request, id):
+    assert isinstance(request, HttpRequest)
+    if request.method == "GET":
+        if id == 0:
+            form = ProfilesForm()
+        else:
+            profile = Profile.objects.get(pk=id)
+            form = ProfilesForm(instance=profile)
+        return render(
+            request,
+            'app/profiles/edit.html',
+            {
+                'form': form
+            }
+        )
+    else:
+        if id == 0:
+            form = ProfilesForm(request.POST)
+        else:
+            profile = Profile.objects.get(pk=id)
+            form = ProfilesForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+        return redirect('/profiles')
