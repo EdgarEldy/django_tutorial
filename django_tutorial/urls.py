@@ -21,7 +21,7 @@ import app.views
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    url(r'^$', app.views.home, name='home'),
+    url(r'^$', app.views.home.index, name='home'),
     url(r'^categories/$', app.views.categories_index, name='categories_index'),
     url(r'^categories/add$', app.views.categories_add, name='categories_add'),
     path('categories/edit/<int:id>', app.views.categories_edit, name='categories_edit'),
