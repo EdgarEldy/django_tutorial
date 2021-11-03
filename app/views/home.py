@@ -3,7 +3,7 @@ from django.http import HttpRequest
 from django.shortcuts import render
 
 
-def home(request):
+def index(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
