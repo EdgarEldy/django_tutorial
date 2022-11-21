@@ -15,3 +15,11 @@ def index(request):
             'categories': categories
         }
     )
+
+# Add a new category
+def add(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/categories/add.html'
+    )
