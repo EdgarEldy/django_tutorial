@@ -20,5 +20,6 @@ urlpatterns = [
     path('', views.home, name="home"),
 
     # Categories routes
-    path('categories/', views.categories.index, name="categories_index")
+    path('categories/', views.categories.index, name="categories_index"),
+    path('categories/add', views.categories.add, name="categories_add"),
 ]
