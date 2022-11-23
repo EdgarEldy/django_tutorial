@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.shortcuts import render
 
 from app.models import Category
-
+from app.forms import CategoryForm
 
 # Categories list
 def index(request):
@@ -19,7 +19,12 @@ def index(request):
 # Add a new category
 def add(request):
     assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        form = CategoryForm
     return render(
         request,
-        'app/categories/add.html'
+        'app/categories/add.html',
+        {
+            'form': form
+        }
     )
