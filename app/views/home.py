@@ -4,7 +4,7 @@ from django.http import HttpRequest
 
 # Create your views here.
 
-def home(request):
+def index(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
