@@ -8,7 +8,7 @@ A simple python web application using django framework.
 4. Create a virtualenv : virtualenv venv
 5. Enable virtualenv : venv\scripts\activate (On windows)
 6. Install requirements : pip install -r requirements.txt
-7. This project uses django, psycopg2 (A connector for Postgres), django-crispy-forms (For handling bootstrap forms) and mysqlclient (A connector for MySQL Database)
+7. This project uses django, psycopg2 (A connector for Postgres), django-crispy-forms (For handling bootstrap forms) and mysqlclient (For MySQL Database)
 8. You can use either Postgres or MySQL. Checkout database configuration in settings.py file.
 9. Run django_tutorial in cmd : python manage.py runserver
 10. Enjoy ! :)

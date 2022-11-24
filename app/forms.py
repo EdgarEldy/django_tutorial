@@ -1,16 +1,3 @@
 """
 Definition of forms.
 """
-
-
-
-
-
-
-
-
-
-
-
-
-
