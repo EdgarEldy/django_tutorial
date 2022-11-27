@@ -4,6 +4,11 @@
     <div class="panel panel-default">
         <div class="panel-heading">Products Categories</div>
         <div class="panel-body">
+            {% if messages %}
+            {% for message in messages %}
+            <p class="alert alert-success w-100 h-100">{{message}}</p>
+            {%endfor %}
+            {% endif %}
             <a href="{% url 'categories_add' %}" class="btn btn-primary">New</a>
             <table data-toggle="table" data-url="" data-show-refresh="true" data-show-toggle="true"
                 data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true"
