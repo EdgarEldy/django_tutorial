@@ -17,5 +17,6 @@ from django.urls import path
 from app import views
 
 urlpatterns = [
-    path('', views.home.index, name="home")
+    path('', views.home.index, name="home"),
+    path('categories/', views.categories.index, name="categories_index"),
 ]
