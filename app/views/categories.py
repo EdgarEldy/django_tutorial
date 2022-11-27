@@ -1,5 +1,6 @@
 from django.http import HttpRequest
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.contrib import messages
 
 from app.models import Category
 from app.forms import CategoryForm
@@ -28,3 +29,16 @@ def add(request):
             'form': form
         }
     )
+
+
+# Save a new category
+def store(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+        
+        messages.success(request, "Category has been saved successfully !")
+            
+        return redirect('/categories')
