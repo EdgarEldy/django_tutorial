@@ -6,7 +6,7 @@
         <div class="panel-heading">Add a product category</div>
         <div class="panel-body">
             <div class="col-md-6">
-                <form role="form" action="#" method="post">
+                <form role="form" action="{% url 'categories_store' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         {{ form.category_name|as_crispy_field }}
