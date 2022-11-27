@@ -19,4 +19,6 @@ from app import views
 urlpatterns = [
     path('', views.home.index, name="home"),
     path('categories/', views.categories.index, name="categories_index"),
+    path('categories/add', views.categories.add, name="categories_add"),
+    path('categories/store', views.categories.store, name="categories_store"),
 ]
