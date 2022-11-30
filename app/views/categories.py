@@ -72,3 +72,10 @@ def update(request, id):
             form.save()
         messages.success(request, "Category has been updated successfully !")
         return redirect('/categories')
+    
+# Remove a category    
+def delete(request, id):
+    category = Category.objects.get(pk=id)
+    category.delete()
+    messages.success(request, "Category has been removed successfully !")
+    return redirect('/categories')
