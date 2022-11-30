@@ -22,4 +22,5 @@ urlpatterns = [
     path('categories/add', categories.add, name="categories_add"),
     path('categories/store', categories.store, name="categories_store"),
     path('categories/edit/<int:id>', categories.edit, name="categories_edit"),
+    path('categories/update/<int:id>', categories.update, name="categories_update"),
 ]
