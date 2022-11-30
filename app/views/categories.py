@@ -42,3 +42,20 @@ def store(request):
         messages.success(request, "Category has been saved successfully !")
             
         return redirect('/categories')
+
+# Edit a category
+def edit(request, id):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        if id == 0:
+            form = CategoryForm()
+        else:
+            category = Category.objects.get(pk=id)
+            form = CategoryForm(instance=category)
+        return render(
+            request,
+            'app/categories/edit.html',
+            {
+                'form': form
+            }
+        )
