@@ -59,3 +59,16 @@ def edit(request, id):
                 'form': form
             }
         )
+
+# Update a category
+def update(request, id):
+    if request.method == 'POST':
+        if id == 0:
+            form = CategoryForm(request.POST)
+        else:
+            category = Category.objects.get(pk=id)
+            form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+        messages.success(request, "Category has been updated successfully !")
+        return redirect('/categories')
