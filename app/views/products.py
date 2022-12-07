@@ -70,3 +70,10 @@ def update(request, id):
             form.save()
         messages.success(request, "Product has been updated successfully !")
         return redirect('/products')
+    
+# Remove a product    
+def delete(request, id):
+    product = Product.objects.get(pk=id)
+    product.delete()
+    messages.success(request, "Product has been removed successfully !")
+    return redirect('/products')
