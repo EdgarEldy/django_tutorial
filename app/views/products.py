@@ -57,3 +57,16 @@ def edit(request, id):
                 'form': form
             }
         )
+        
+# Update a product
+def update(request, id):
+    if request.method == 'POST':
+        if id == 0:
+            form = ProductForm(request.POST)
+        else:
+            product = Product.objects.get(pk=id)
+            form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+        messages.success(request, "Product has been updated successfully !")
+        return redirect('/products')
