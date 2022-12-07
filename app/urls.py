@@ -27,5 +27,6 @@ urlpatterns = [
     
     # products view
     path('products/', products.index, name="products_index"),
+    path('products/add', products.add, name="products_add"),
     
 ]
