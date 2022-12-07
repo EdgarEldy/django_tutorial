@@ -40,3 +40,20 @@ def store(request):
         messages.success(request, "Product has been saved successfully !")
             
         return redirect('/products')
+    
+# Edit a product
+def edit(request, id):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        if id == 0:
+            form = ProductForm()
+        else:
+            category = Product.objects.get(pk=id)
+            form = ProductForm(instance=category)
+        return render(
+            request,
+            'app/products/edit.html',
+            {
+                'form': form
+            }
+        )
