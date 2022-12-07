@@ -1,0 +1,30 @@
+{% extends "app/layouts/default.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Update a product</div>
+        <div class="panel-body">
+            <div class="col-md-6">
+                <form role="form" action="#" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.category|as_crispy_field }}
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        {{ form.product_name|as_crispy_field }}
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        {{ form.unit_price|as_crispy_field }}
+                        <span class="invalid-feedback"></span>
+                    </div>
+                    <button type="submit" id="submit" class="btn btn-primary">Save</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- /.col-->
+{% endblock %}
