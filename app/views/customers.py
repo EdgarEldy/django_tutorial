@@ -72,3 +72,10 @@ def update(request, id):
             form.save()
         messages.success(request, "Customer has been updated successfully !")
         return redirect('/customers')
+    
+# Remove a customer    
+def delete(request, id):
+    customer = Customer.objects.get(pk=id)
+    customer.delete()
+    messages.success(request, "Customer has been removed successfully !")
+    return redirect('/customers')
