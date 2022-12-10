@@ -30,3 +30,15 @@ def add(request):
             'form': form
         }
     )
+    
+# Save a new customer
+def store(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+        
+        messages.success(request, "Customer has been saved successfully !")
+            
+        return redirect('/customers')
