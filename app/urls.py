@@ -35,5 +35,6 @@ urlpatterns = [
     
     # customers view
     path('customers/', customers.index, name="customers_index"),
+    path('customers/add', customers.add, name="customers_add"),
     
 ]
