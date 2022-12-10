@@ -37,5 +37,6 @@ urlpatterns = [
     path('customers/', customers.index, name="customers_index"),
     path('customers/add', customers.add, name="customers_add"),
     path('customers/store', customers.store, name="customers_store"),
+    path('customers/edit/<int:id>', customers.edit, name="customers_edit"),
     
 ]
