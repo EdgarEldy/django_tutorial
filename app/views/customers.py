@@ -42,3 +42,20 @@ def store(request):
         messages.success(request, "Customer has been saved successfully !")
             
         return redirect('/customers')
+    
+# Edit a customer
+def edit(request, id):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        if id == 0:
+            form = CustomerForm()
+        else:
+            customer = Customer.objects.get(pk=id)
+            form = CustomerForm(instance=customer)
+        return render(
+            request,
+            'app/customers/edit.html',
+            {
+                'form': form
+            }
+        )
