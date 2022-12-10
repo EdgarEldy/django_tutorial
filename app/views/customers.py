@@ -59,3 +59,16 @@ def edit(request, id):
                 'form': form
             }
         )
+        
+    # Update a customer
+def update(request, id):
+    if request.method == 'POST':
+        if id == 0:
+            form = CustomerForm(request.POST)
+        else:
+            customer = Customer.objects.get(pk=id)
+            form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+        messages.success(request, "Customer has been updated successfully !")
+        return redirect('/customers')
