@@ -39,5 +39,6 @@ urlpatterns = [
     path('customers/store', customers.store, name="customers_store"),
     path('customers/edit/<int:id>', customers.edit, name="customers_edit"),
     path('customers/update/<int:id>', customers.update, name="customers_update"),
+    path('customers/delete/<int:id>', customers.delete, name="customers_delete"),
     
 ]
