@@ -43,4 +43,6 @@ urlpatterns = [
     
     # orders view
     path('orders/', orders.index, name='orders_index'),
+    path('orders/add', orders.add, name='orders_add'),
+
 ]
