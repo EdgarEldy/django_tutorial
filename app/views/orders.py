@@ -1,8 +1,8 @@
-from django.http import HttpRequest
+from django.http import HttpRequest, JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib import messages
 
-from app.models import Order, Category
+from app.models import Order, Category, Product
 from app.forms import OrderForm
 # Show orders list
 def index(request):
@@ -29,3 +29,9 @@ def add(request):
             'categories': categories
         }
     )
+    
+# Get products by category id and convert into json
+def getProducts(request):
+    category_id = request.GET.get('category_id')
+    products = Product.objects.filter(category_id = category_id).order_by('product_name').values()
+    return JsonResponse(list(products), safe=False)
