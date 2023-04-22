@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap3',
 ]
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap3'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
