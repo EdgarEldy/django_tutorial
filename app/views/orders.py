@@ -53,3 +53,13 @@ def getUnitPrice(request):
             'product': product
         }
     )
+
+
+# Save a new order
+def store(request):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+        messages.success(request, 'Order has been saved successfully! ')
+        return redirect('/orders')
