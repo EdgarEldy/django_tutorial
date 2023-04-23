@@ -39,3 +39,17 @@ def getProducts(request):
     category_id = request.GET.get('category_id')
     products = Product.objects.filter(category_id=category_id).order_by('product_name').values()
     return JsonResponse(list(products), safe=False)
+
+
+# Get unit price by product id
+def getUnitPrice(request):
+    id_product = request.GET.get('id_product')
+    product = Product.objects.get(pk=id_product)
+    # data = serialize("json", [product], fields=('unit_price'))
+    return render(
+        request,
+        'app/orders/getUnitPrice.html',
+        {
+            'product': product
+        }
+    )
