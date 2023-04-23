@@ -46,5 +46,5 @@ urlpatterns = [
     path('orders/add', orders.add, name='orders_add'),
     path('orders/getProducts', orders.getProducts, name='getProducts'),
     path('orders/getUnitPrice', orders.getUnitPrice, name='getUnitPrice'),
-
+    path('orders/store', orders.store, name='orders_store')
 ]
