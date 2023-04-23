@@ -7,7 +7,7 @@
             <div class="panel-heading">Add a new order</div>
             <div class="panel-body">
                 <div class="col-md-6">
-                    <form action="#" method="post">
+                    <form action="{% url 'orders_store' %}" method="post">
                         {% csrf_token %}
                         <div class="form-group">
                             {{ form.customer|as_crispy_field }}
