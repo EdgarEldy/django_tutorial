@@ -40,3 +40,12 @@ $(function () {
         );
     });
 });
+
+// Calculate the total
+$('#id_quantity').on('keyup', function () {
+    var id_qty = $(this).val();
+    // alert(id_quantity)
+    var unit_price = $('#unit_price').val();
+    var total = id_qty * unit_price;
+    $('#id_total').val(total);
+});
